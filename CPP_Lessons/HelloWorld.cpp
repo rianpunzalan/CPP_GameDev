@@ -65,7 +65,42 @@ public:
 		std::cout << m_id << " " << m_avg << "\n";
 	}
 };
+/*
+void doMachineLearning(const Data& d) //declared as const to ensure that it will not change
+{
+	d.getValue()
+}
+*/
 
+class Course
+{
+	std::string m_name = "Course";
+	std::vector<Student> m_students;
+public:
+	Course(){}
+	Course(const std::string& name)		//string& passes a reference to a string, instead of copying it
+		:m_name(name)					// const so the name doesnt change
+	{
+	}
+
+	void addStudent(const Student& s)
+	{
+		m_students.push_back(s);
+	}
+
+	const std::vector<Student>& getStudents() const		//the first const = means what we are returning cannot change
+	{													//second const means getStudents will not change the class
+		return m_students;
+	}
+
+	void pring() const
+	{
+		for (const auto& s : m_students)
+		{
+			s.print();
+		}
+	}
+};
 
 int main(int argc, char* argv[])
 {
@@ -122,8 +157,9 @@ int main(int argc, char* argv[])
 
 	Student s1;
 	Student s2("Rian", "Punzalan", 1, 95.1f);
-
 	const Student s3("Celine", "Ang", 2, 100.0f);	//notice the const, meaning you dont want this object to change
+
+	Course comp4300("Comp 4300");
 
 	s1.print();
 
